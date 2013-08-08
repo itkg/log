@@ -3,15 +3,28 @@
 namespace Lemon\Log;
 
 use Lemon\Log\Helper\IdGenerator;
+use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
+
 /**
- * Class Writer
+ * Class Logger
  *
  * @abstract
  * 
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-abstract class Logger
+abstract class Logger extends AbstractLogger
 {
+    protected $levels = array(
+        LogLevel::EMERGENCY,
+        LogLevel::ALERT,
+        LogLevel::CRITICAL,
+        LogLevel::ERROR,
+        LogLevel::WARNING,
+        LogLevel::NOTICE,
+        LogLevel::INFO,
+        LogLevel::DEBUG,
+    );
 	/**
      * ID du log
      *
@@ -20,9 +33,9 @@ abstract class Logger
     protected $id;
   
     /**
-     * Liste des paramètres du Writer
+     * Liste des paramètres du Logger
      * Permet par exemple de stocker le nom du fichier de log, etc.
-     * Ces paramêtres sont chargés via la méthode load du Writer
+     * Ces paramêtres sont chargés via la méthode load du Logger
      * Cette méthode doit être redéfinie pour effectuer le traitement de ces 
      * paramêtres
      * 
@@ -33,7 +46,7 @@ abstract class Logger
     /**
      * Formatter de log
      *
-     * @var Itkg\Log\Formatter
+     * @var Lemon\Log\Formatter
      */
     protected $formatter;
 
@@ -100,7 +113,7 @@ abstract class Logger
     {}
     
     /**
-     * Set les paramêtres du Writer
+     * Set les paramêtres du Logger
      * 
      * @param array $parameters 
      */
@@ -124,15 +137,6 @@ abstract class Logger
     {
         $this->parameters = array_merge($this->parameters, $parameters);
     }
-    
-    /**
-     * Ecrit le log au bon format
-     *
-     * @abstract
-     * @param string $log
-     * @param array $params 
-     */
-    public abstract function write($log);
     
     /**
      * Get formatter
@@ -192,4 +196,15 @@ abstract class Logger
             return $this->idGenerator->generate();
         }
     }
+
+    public function log($level, $message, array $context = array())
+    {
+        if(!in_array($level, $this->levels)) {
+            throw new \Psr\Log\InvalidArgumentException(sprintf('Level %s does not exist', $level));
+        }
+        $this->formatter->addParameters($context);
+        $this->write($level, $this->formatter->format($message));
+    }
+
+    abstract protected function write($level, $message);
 }

@@ -3,17 +3,17 @@
 namespace Lemon\Log;
 
 /**
- * Classe factory pour les log\Writer
+ * Classe factory pour les log\Logger
  *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  *
- * @package \Itkg\Log
+ * @package \Lemon\Log
  */
 class Factory 
 {
 
     /**
-     * Renvoi le writer passé en paramètre
+     * Renvoi le Logger passé en paramètre
      * ou celui par défaut si aucun n'est spécifié
      * Appel la méthode load du logger créé avant de le retourner
      * 
@@ -22,7 +22,7 @@ class Factory
      * @param string $formatter
      * @param array $parameters
      * 
-     * @return \Itkg\Log\Writer
+     * @return \Lemon\Log\Logger
      */
     public static function getLogger($logger = '', $formatter = '', array $parameters = array(), IdGeneratorInterface $idGenerator = null)
     {
@@ -40,7 +40,7 @@ class Factory
         }
         
         /**
-         * On renvoie le writer par défaut
+         * On renvoie le Logger par défaut
          */              
         if(!\Lemon::has($logger)) {
             $logger = \Lemon::get('log.logger.default');
@@ -54,7 +54,7 @@ class Factory
             ->setIdGenerator($idGenerator);
         $logger->load();
         /**
-         * On renvoie le writer défini
+         * On renvoie le Logger défini
          */
         return $logger;
     }

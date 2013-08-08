@@ -5,21 +5,20 @@ namespace Lemon\Log\Logger;
 use Lemon\Log\Logger;
 
 /**
- * Classe Writer qui écrit dans le fichier error_log
+ * Classe Logger qui écrit dans le fichier error_log
  *
- * @package \Lemon\Log\Writer
+ * @package \Lemon\Log\Logger
  */
-class ErrorLog extends BaseWriter
+class ErrorLog extends BaseLogger
 {
     /**
      * Ecrit le log dans l'error_log
-     * @param type $log
-     * @param type $params
+     *
+     * @param string $level
+     * @param string $message
      */
-    public function write($log)
+    protected function write($level, $message)
     {
-        $log = $this->formatter->format($log);
-        
         error_log($this->id.$log);
     }
 

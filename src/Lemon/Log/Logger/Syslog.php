@@ -11,15 +11,26 @@ use Lemon\Log\Logger;
  */
 class Syslog extends Logger
 {
+    
+    CONST LEVELS = array(
+        'emergency' => LOG_EMERG,
+        'alert'     => LOG_ALERT,
+        'critical'  => LOG_CRIT,
+        'error'     => LOG_ERR,
+        'warning'   => LOG_WARNING,
+        'notice'    => LOG_NOTICE,
+        'info'      => LOG_INFO,
+        'debug'     => LOG_DEBUG
+    );
+
     /**
      * Ecrit le log dans le syslog
-     * 
-     * @param string $log
+     *
+     * @param string $level
+     * @param string $message
      */
-    public function write($log)
+    protected function write($level, $message)
     {
-        $log = $this->formatter->format($log);
-        
-        syslog(LOG_ALERT, $this->id.$log);
+        syslog(LEVELS[$level], $this->id.$log);
     }
 }

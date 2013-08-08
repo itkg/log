@@ -5,25 +5,23 @@ namespace Lemon\Log\Logger;
 use Lemon\Log\Logger;
 
 /**
- * Classe Writer par echo
+ * Classe Logger par echo
  * Affiche le log directement à l'écran
  * Utile pour la phase de dev
  *
- * @package \Lemon\Log\Writer
+ * @package \Lemon\Log\Logger
  */
 class Display extends Logger
 {
     /**
      * Affiche le log à l'écran
      * 
-     * @param string $log
-     * @param array $params
+     * @param string $level
+     * @param string $message
      */
-    public function write($log)
+    protected function write($level, $message)
     {
-        $log = $this->formatter->format($log);
-        
-        echo $this->id.$log.'<br />';
+        echo $this->id.' - ('.$level.') '.$message.'<br />';
     }
 
 }

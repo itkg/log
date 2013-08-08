@@ -33,6 +33,11 @@ abstract class Formatter
      */
     public abstract function format($log);
     
+    public function addParameters($parameters = array())
+    {
+        $this->parameters = array_merge($this->getParameters(), $parameters);
+    }
+
     /**
      * Getter parameters
      * 
@@ -40,6 +45,9 @@ abstract class Formatter
      */
     public function getParameters()
     {
+        if(!$this->parameters) {
+            $this->parameters = array();
+        }
         return $this->parameters;
     }
     

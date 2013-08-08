@@ -5,11 +5,11 @@ namespace Lemon\Log\Logger;
 use Lemon\Log\Logger;
 
 /**
- * Classe Writer pour les requetes soap
+ * Classe Logger pour les requetes soap
  * Utile pour la reprise sur incident et l'enregistrement dans des fichiers
  * uniques par log 
  *
- * @package \Lemon\Log\Writer
+ * @package \Lemon\Log\Logger
  */
 class Soap extends Logger
 {
@@ -28,7 +28,7 @@ class Soap extends Logger
     protected $file;
     
     /**
-     * Récupération des paramêtres utiles au Writer
+     * Récupération des paramêtres utiles au Logger
      */
     public function load()
     {
@@ -55,12 +55,11 @@ class Soap extends Logger
      /**
      * Ecrit le log dans un fichier
      *
-     * @param string $log
+     * @param string $level
+     * @param string $message
      */
-    public function write($log)
+    protected function write($level, $message)
     {
-       $log = $this->formatter->format($log); 
-        
        file_put_contents($this->folder.$this->file, $this->id.$log);
     }
 

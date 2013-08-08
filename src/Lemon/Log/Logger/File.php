@@ -5,9 +5,9 @@ namespace Lemon\Log\Logger;
 use Lemon\Log\Logger;
 
 /**
- * Classe Writer par fichier de logs
+ * Classe Logger par fichier de logs
  *
- * @package \Lemon\Log\Writer
+ * @package \Lemon\Log\Logger
  */
 class File extends Logger
 {
@@ -19,7 +19,7 @@ class File extends Logger
     protected $file;
 
     /**
-     * Récupération des paramêtres utiles au Writer
+     * Récupération des paramêtres utiles au Logger
      */
     public function load()
     {
@@ -31,16 +31,15 @@ class File extends Logger
     /**
      * Ecrit le log dans un fichier
      *
-     * @param string $log
+     * @param string $level
+     * @param string $message
      */
-    public function write($log)
+    protected function write($level, $message)
     {
-        $log = $this->formatter->format($log);
-        
         if(file_exists($this->file)) {
-            file_put_contents($this->file, $this->id.$log.PHP_EOL, FILE_APPEND);
+            file_put_contents($this->file, $this->id.$message.PHP_EOL, FILE_APPEND);
         }else {
-            file_put_contents($this->file, $this->id.$log.PHP_EOL);
+            file_put_contents($this->file, $this->id.$message.PHP_EOL);
         }
     }
 }

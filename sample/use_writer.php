@@ -23,11 +23,24 @@ $logger
 	->setIdGenerator($idGenerator)
     ->load();
 $logger->init('My IDENTIFIER');
-$logger->write('My Echo Writer works');
+$logger->notice('My Echo Writer works');
 
 // A simple & good way to use a logger
 
 $logger = \Lemon::get('log.factory')
 	->getLogger('log.logger.display');
 $logger->init('My IDENTIFIER');
-$logger->write('My Echo Writer works');
+
+$logger->notice('My Echo Writer works notice message');
+$logger->init('My IDENTIFIER');
+$logger->info('My Echo Writer works info message');
+$logger->init('My IDENTIFIER');
+$logger->debug('My Echo Writer works debug message');
+$logger->init('My IDENTIFIER');
+$logger->warning('My Echo Writer works warning message');
+$logger->init('My IDENTIFIER');
+$logger->critical('My Echo Writer works critical message');
+$logger->init('My IDENTIFIER');
+$logger->emergency('My Echo Writer works emergency message');
+$logger->init('My IDENTIFIER');
+$logger->error('My Echo Writer works error message');
