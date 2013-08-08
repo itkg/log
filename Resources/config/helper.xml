@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="log.helper.id_generator.class">Lemon\Log\Helper\IdGenerator</parameter>
+    </parameters>
+    <services>
+        <service id="log.helper.id_generator.default" class="%log.helper.id_generator.class%" public="true" />
+    </services>
+</container>

@@ -1,0 +1,35 @@
+{
+    "name": "itkg/itkg",
+    "require": {
+        "pdenis/lemon-core": "1.x",
+        "symfony/dependency-injection": "v2.3",
+        "symfony/config": "v2.3",
+        "symfony/yaml": "v2.3"
+    },
+    "repositories": {
+    "lemon-core": {
+            "type": "package",
+            "package": {
+                "name": "pdenis/lemon-core",
+                "version": "1.0",
+                "source": {
+                    "url": "git://github.com/pdenis/lemon-core.git",
+                    "type": "git",
+                    "reference": "origin/master"
+                }
+            }
+        }
+    },
+   
+    "autoload": {
+        "psr-0": {
+            "Lemon\\Log": "src",
+            "Lemon": "vendor/pdenis/lemon-core/src",
+            "Symfony\\Component\\Config": "vendor/symfony/config",
+            "Symfony\\Component\\DependencyInjection": "vendor/symfony/dependency-injection",
+            "Symfony\\Component\\Yaml": "vendor/symfony/yaml",
+            "Symfony\\Component\\Filesystem": "vendor/symfony/filesystem"
+        }
+    }
+}
+

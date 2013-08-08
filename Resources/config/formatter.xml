@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="log.formatter.simple.class">Lemon\Log\Formatter\Simple</parameter>
+		<parameter key="log.formatter.string.class">Lemon\Log\Formatter\String</parameter>
+        <parameter key="log.formatter.xml.class">Lemon\Log\Formatter\XML</parameter>
+    </parameters>
+    <services>
+        <service id="log.formatter.simple" class="%log.formatter.simple.class%" public="true" />
+        <service id="log.formatter.string" class="%log.formatter.string.class%" public="true" />
+        <service id="log.formatter.xml"    class="%log.formatter.xml.class%" public="true" />
+
+        <!-- Default Formatter -->
+        <service id="log.formatter.default" class="%log.formatter.simple.class%" public="true" />
+    </services>
+</container>
