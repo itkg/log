@@ -25,6 +25,7 @@ abstract class Logger extends AbstractLogger
         LogLevel::INFO,
         LogLevel::DEBUG,
     );
+    
 	/**
      * ID du log
      *
