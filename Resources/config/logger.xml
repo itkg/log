@@ -19,6 +19,6 @@
         <service id="log.logger.file"      class="%log.logger.syslog.class%"    public="true" />
 
         <!-- Default Formatter -->
-        <service id="log.logger.default" class="%log.logger.display.class%" public="true" />
+        <service id="log.logger.default" alias="log.logger.display" />
     </services>
 </container>

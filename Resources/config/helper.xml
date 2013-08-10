@@ -8,6 +8,7 @@
 		<parameter key="log.helper.id_generator.class">Lemon\Log\Helper\IdGenerator</parameter>
     </parameters>
     <services>
-        <service id="log.helper.id_generator.default" class="%log.helper.id_generator.class%" public="true" />
+		<service id="log.helper.id_generator" class="%log.helper.id_generator.class%" public="true" />
+        <service id="log.helper.id_generator.default" alias="log.helper.id_generator" />
     </services>
 </container>

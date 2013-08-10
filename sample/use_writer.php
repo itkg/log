@@ -44,3 +44,23 @@ $logger->init('My IDENTIFIER');
 $logger->emergency('My Echo Writer works emergency message');
 $logger->init('My IDENTIFIER');
 $logger->error('My Echo Writer works error message');
+
+echo '<br />Use default : ';
+
+$logger = \Lemon::get('log.factory')
+	->getLogger();
+$logger->init('My IDENTIFIER');
+
+$logger->notice('My Echo Writer works notice message');
+$logger->init('My IDENTIFIER');
+$logger->info('My Echo Writer works info message');
+$logger->init('My IDENTIFIER');
+$logger->debug('My Echo Writer works debug message');
+$logger->init('My IDENTIFIER');
+$logger->warning('My Echo Writer works warning message');
+$logger->init('My IDENTIFIER');
+$logger->critical('My Echo Writer works critical message');
+$logger->init('My IDENTIFIER');
+$logger->emergency('My Echo Writer works emergency message');
+$logger->init('My IDENTIFIER');
+$logger->error('My Echo Writer works error message');

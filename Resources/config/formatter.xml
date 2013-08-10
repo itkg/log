@@ -15,6 +15,6 @@
         <service id="log.formatter.xml"    class="%log.formatter.xml.class%" public="true" />
 
         <!-- Default Formatter -->
-        <service id="log.formatter.default" class="%log.formatter.simple.class%" public="true" />
+        <service id="log.formatter.default" alias="log.formatter.simple" />
     </services>
 </container>
