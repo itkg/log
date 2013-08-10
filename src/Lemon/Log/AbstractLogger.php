@@ -3,8 +3,9 @@
 namespace Lemon\Log;
 
 use Lemon\Log\Helper\IdGenerator;
-use Psr\Log\AbstractLogger;
+use Psr\Log\AbstractLogger as BaseAbractLogger;
 use Psr\Log\LogLevel;
+use Lemon\Config;
 
 /**
  * Class Logger
@@ -13,7 +14,7 @@ use Psr\Log\LogLevel;
  * 
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-abstract class Logger extends AbstractLogger
+abstract class AbstractLogger extends Config implements LoggerInterface 
 {
     protected $levels = array(
         LogLevel::EMERGENCY,
@@ -34,17 +35,6 @@ abstract class Logger extends AbstractLogger
     protected $id;
   
     /**
-     * Liste des paramètres du Logger
-     * Permet par exemple de stocker le nom du fichier de log, etc.
-     * Ces paramêtres sont chargés via la méthode load du Logger
-     * Cette méthode doit être redéfinie pour effectuer le traitement de ces 
-     * paramêtres
-     * 
-     * @var array
-     */
-    protected $parameters;
-
-    /**
      * Formatter de log
      *
      * @var Lemon\Log\Formatter
@@ -61,12 +51,12 @@ abstract class Logger extends AbstractLogger
     /**
      * Constructeur
      */
-    public function __construct(Formatter $formatter = null, array $parameters = array(), IdGeneratorInterface $idGenerator = null)
+    public function __construct(Formatter $formatter = null, array $params = array(), IdGeneratorInterface $idGenerator = null)
     {
         if(is_object($formatter)) {
             $this->setFormatter($formatter);
         }
-        $this->parameters = $parameters;
+        $this->setParams($params);
         if($idGenerator) {
             $this->setIdGenerator($idGenerator);
         }
@@ -108,36 +98,9 @@ abstract class Logger extends AbstractLogger
      * chargement des paramètres
      * 
      * Doit être surchargé pour les traitements spécifiques
-     * @param array $parameters 
      */
     public function load()
     {}
-    
-    /**
-     * Set les paramêtres du Logger
-     * 
-     * @param array $parameters 
-     */
-    public function setParameters(array $parameters = array())
-    {
-        $this->parameters = $parameters;
-        $this->load();
-
-        return $this;
-    }
-    
-    /**
-     * Ajoute une liste de paramètres à ceux existantsl
-     * 
-     * @param array $parameters ["appelRetour"] (facultatif) soit "'appel" ou 
-     * "reponse OK", ou "reponse KO" soit vide
-     * ["requestTime"] (facultatif) date en microsecondes de la requete 
-     * (pour calculer le temps de reponse)
-     */
-    public function loadParameters(array $parameters = array())
-    {
-        $this->parameters = array_merge($this->parameters, $parameters);
-    }
     
     /**
      * Get formatter
@@ -162,16 +125,6 @@ abstract class Logger extends AbstractLogger
         return $this;
     }
     
-    /**
-     * Get parameters
-     * 
-     * @return array 
-     */
-    public function getParameters()
-    {
-        return $this->parameters;
-    }
-	
 	public function getIdGenerator()
 	{
 		return $this->idGenerator;
@@ -196,6 +149,113 @@ abstract class Logger extends AbstractLogger
         }else {
             return $this->idGenerator->generate();
         }
+    }
+
+    /**
+     * System is unusable.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function emergency($message, array $context = array())
+    {
+        $this->log(LogLevel::EMERGENCY, $message, $context);
+    }
+
+    /**
+     * Action must be taken immediately.
+     *
+     * Example: Entire website down, database unavailable, etc. This should
+     * trigger the SMS alerts and wake you up.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function alert($message, array $context = array())
+    {
+        $this->log(LogLevel::ALERT, $message, $context);
+    }
+
+    /**
+     * Critical conditions.
+     *
+     * Example: Application component unavailable, unexpected exception.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function critical($message, array $context = array())
+    {
+        $this->log(LogLevel::CRITICAL, $message, $context);
+    }
+
+    /**
+     * Runtime errors that do not require immediate action but should typically
+     * be logged and monitored.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function error($message, array $context = array())
+    {
+        $this->log(LogLevel::ERROR, $message, $context);
+    }
+
+    /**
+     * Exceptional occurrences that are not errors.
+     *
+     * Example: Use of deprecated APIs, poor use of an API, undesirable things
+     * that are not necessarily wrong.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function warning($message, array $context = array())
+    {
+        $this->log(LogLevel::WARNING, $message, $context);
+    }
+
+    /**
+     * Normal but significant events.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function notice($message, array $context = array())
+    {
+        $this->log(LogLevel::NOTICE, $message, $context);
+    }
+
+    /**
+     * Interesting events.
+     *
+     * Example: User logs in, SQL logs.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function info($message, array $context = array())
+    {
+        $this->log(LogLevel::INFO, $message, $context);
+    }
+
+    /**
+     * Detailed debug information.
+     *
+     * @param string $message
+     * @param array $context
+     * @return null
+     */
+    public function debug($message, array $context = array())
+    {
+        $this->log(LogLevel::DEBUG, $message, $context);
     }
 
     public function log($level, $message, array $context = array())

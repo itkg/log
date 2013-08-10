@@ -2,7 +2,7 @@
 
 namespace Lemon\Log\Logger;
 
-use Lemon\Log\Logger;
+use Lemon\Log\AbstractLogger;
 
 /**
  * Classe Logger pour les requetes soap
@@ -11,7 +11,7 @@ use Lemon\Log\Logger;
  *
  * @package \Lemon\Log\Logger
  */
-class Soap extends Logger
+class Soap extends AbstractLogger
 {
      /**
      * Le répertoire de log (inclut le séparateur en fin de chemin)
@@ -26,6 +26,10 @@ class Soap extends Logger
      * @var string
      */
     protected $file;
+
+    protected $requiredParams = array(
+        'folder'
+    );
     
     /**
      * Récupération des paramêtres utiles au Logger
@@ -41,16 +45,6 @@ class Soap extends Logger
             $this->file = time().".txt";
         }
     }
-    
- 
-    /**
-     * setter pour $this->file
-     * @var $file string
-     */
-    public function setFile($file) {
-        $this->file = $file;
-    }
-
         
      /**
      * Ecrit le log dans un fichier

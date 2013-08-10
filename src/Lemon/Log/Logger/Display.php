@@ -2,7 +2,7 @@
 
 namespace Lemon\Log\Logger;
 
-use Lemon\Log\Logger;
+use Lemon\Log\AbstractLogger;
 
 /**
  * Classe Logger par echo
@@ -11,7 +11,7 @@ use Lemon\Log\Logger;
  *
  * @package \Lemon\Log\Logger
  */
-class Display extends Logger
+class Display extends AbstractLogger
 {
     /**
      * Affiche le log à l'écran

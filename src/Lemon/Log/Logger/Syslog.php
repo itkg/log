@@ -2,14 +2,14 @@
 
 namespace Lemon\Log\Logger;
 
-use Lemon\Log\Logger;
+use Lemon\Log\AbstractLogger;
 
 /**
  * Classe Logger qui écrit dans le syslog
  * 
  * @package \Lemon\Log\Logger
  */
-class Syslog extends Logger
+class Syslog extends AbstractLogger
 {
     
     CONST LEVELS = array(
@@ -31,6 +31,6 @@ class Syslog extends Logger
      */
     protected function write($level, $message)
     {
-        syslog(LEVELS[$level], $this->id.$log);
+        syslog(Syslog::LEVELS[$level], $this->id.$log);
     }
 }

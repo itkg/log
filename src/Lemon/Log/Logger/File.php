@@ -2,14 +2,14 @@
 
 namespace Lemon\Log\Logger;
 
-use Lemon\Log\Logger;
+use Lemon\Log\AbstractLogger;
 
 /**
  * Classe Logger par fichier de logs
  *
  * @package \Lemon\Log\Logger
  */
-class File extends Logger
+class File extends AbstractLogger
 {
     /**
      * Le chemin vers le fichier de log
@@ -18,14 +18,16 @@ class File extends Logger
      */
     protected $file;
 
+    protected $requiredParams = array(
+        'file'
+    );
+
     /**
      * Récupération des paramêtres utiles au Logger
      */
     public function load()
     {
-        if(isset($this->parameters['file'])) {
-            $this->file = $this->parameters['file'];
-        }
+        $this->file = $this->params['file'];
     }
 
     /**
