@@ -50,7 +50,7 @@ class Factory
 
         $logger
             ->setFormatter($formatter)
-            ->setParameters($parameters)
+            ->setParams($parameters)
             ->setIdGenerator($idGenerator);
         $logger->load();
         /**

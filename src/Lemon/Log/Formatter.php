@@ -21,7 +21,7 @@ abstract class Formatter
     /**
      * Logger
      * 
-     * @var \Lemon\Log\Logger
+     * @var \Lemon\Log\AbstractLogger
      */
     protected $logger;
     
@@ -64,9 +64,9 @@ abstract class Formatter
     /**
      * Setter Logger
      * 
-     * @param \Lemon\Log\Logger $logger 
+     * @param \Lemon\Log\AbstractLogger $logger 
      */
-    public function setLogger(\Lemon\Log\Logger $logger) 
+    public function setLogger(\Lemon\Log\AbstractLogger $logger) 
     {
         $this->logger = $logger;
     }
@@ -74,7 +74,7 @@ abstract class Formatter
     /**
      * Getter Logger
      * 
-     * @return \Lemon\Log\Logger $logger 
+     * @return \Lemon\Log\AbstractLogger $logger 
      */
     public function getLogger() 
     {

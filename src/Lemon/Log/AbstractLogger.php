@@ -3,7 +3,7 @@
 namespace Lemon\Log;
 
 use Lemon\Log\Helper\IdGenerator;
-use Psr\Log\AbstractLogger as BaseAbractLogger;
+use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Lemon\Config;
 

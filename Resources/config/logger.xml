@@ -10,12 +10,19 @@
         <parameter key="log.logger.file.class">Lemon\Log\Logger\File</parameter>
         <parameter key="log.logger.soap.class">Lemon\Log\Logger\Soap</parameter>
         <parameter key="log.logger.syslog.class">Lemon\Log\Logger\Syslog</parameter>
+
+        <parameter key="log.logger.file.params" type="collection" />
+        <parameter key="log.logger.soap.params" type="collection" />
     </parameters>
     <services>
-        <service id="log.logger.display"   class="%log.logger.display.class%"      public="true" />
+        <service id="log.logger.display"   class="%log.logger.display.class%"   public="true" />
         <service id="log.logger.error_log" class="%log.logger.error_log.class%" public="true" />
-        <service id="log.logger.file"      class="%log.logger.file.class%"      public="true" />
-        <service id="log.logger.soap"      class="%log.logger.soap.class%"      public="true" />
+        <service id="log.logger.file"      class="%log.logger.file.class%"      public="true">
+            <argument>%log.logger.file.params%</argument>
+        </service>
+        <service id="log.logger.soap"      class="%log.logger.soap.class%"      public="true" >
+            <argument>%log.logger.soap.params%</argument>
+        </service>
         <service id="log.logger.file"      class="%log.logger.syslog.class%"    public="true" />
 
         <!-- Default Formatter -->
