@@ -12,7 +12,7 @@ use Lemon\Log\AbstractLogger;
 class Syslog extends AbstractLogger
 {
     
-    CONST LEVELS = array(
+    static $LEVELS = array(
         'emergency' => LOG_EMERG,
         'alert'     => LOG_ALERT,
         'critical'  => LOG_CRIT,
@@ -31,6 +31,6 @@ class Syslog extends AbstractLogger
      */
     protected function write($level, $message)
     {
-        syslog(Syslog::LEVELS[$level], $this->id.$log);
+        syslog(self::$LEVELS[$level], $this->id.$message);
     }
 }

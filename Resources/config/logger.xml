@@ -23,7 +23,7 @@
         <service id="log.logger.soap"      class="%log.logger.soap.class%"      public="true" >
             <argument>%log.logger.soap.params%</argument>
         </service>
-        <service id="log.logger.file"      class="%log.logger.syslog.class%"    public="true" />
+        <service id="log.logger.syslog"      class="%log.logger.syslog.class%"    public="true" />
 
         <!-- Default Formatter -->
         <service id="log.logger.default" alias="log.logger.display" />

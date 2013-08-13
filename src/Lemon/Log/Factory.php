@@ -24,7 +24,7 @@ class Factory
      * 
      * @return \Lemon\Log\Logger
      */
-    public static function getLogger($logger = '', $formatter = '', array $parameters = array(), IdGeneratorInterface $idGenerator = null)
+    public static function getLogger($logger = '', $formatter = '', array $params = array(), IdGeneratorInterface $idGenerator = null)
     {
         /**
          * Si aucun formatter n'est passé, on utilise celui par défaut
@@ -50,7 +50,7 @@ class Factory
 
         $logger
             ->setFormatter($formatter)
-            ->setParams($parameters)
+            ->setParams($params)
             ->setIdGenerator($idGenerator);
         $logger->load();
         /**
