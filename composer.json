@@ -2,9 +2,9 @@
     "name": "itkg/itkg",
     "require": {
         "pdenis/lemon-core": "1.x",
-        "symfony/dependency-injection": "v2.3",
-        "symfony/config": "v2.3",
-        "symfony/yaml": "v2.3",
+        "symfony/dependency-injection": "v2.3.3",
+        "symfony/config": "v2.3.3",
+        "symfony/yaml": "v2.3.3",
         "psr/log": "1.0.0"
     },
     "repositories": {
