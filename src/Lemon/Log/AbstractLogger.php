@@ -51,7 +51,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     /**
      * Constructeur
      */
-    public function __construct(array $params = array(), Formatter $formatter = null, IdGeneratorInterface $idGenerator = null)
+    public function __construct(array $params = array(), AbstractFormatter $formatter = null, IdGeneratorInterface $idGenerator = null)
     {
         if(is_object($formatter)) {
             $this->setFormatter($formatter);

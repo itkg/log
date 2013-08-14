@@ -2,15 +2,15 @@
 
 namespace Lemon\Log\Formatter;
 
-use Lemon\Log\Formatter as BaseFormatter;
+use Lemon\Log\AbstractFormatter;
 
 /**
  * Classe de formatage StringFormatter
  * Encode les logs en utf_8
  *
- * @package \Itkg\Log\Formatter
+ * @package \Lemon\Log\Formatter
  */
-class String extends BaseFormatter
+class String extends AbstractFormatter
 {
     /**
      * Formate le log

@@ -2,7 +2,7 @@
 
 namespace Lemon\Log\Formatter;
 
-use Lemon\Log\Formatter as BaseFormatter;
+use Lemon\Log\AbstractFormatter;
 
 /**
  * Classe de formatage XMLFormatter
@@ -10,7 +10,7 @@ use Lemon\Log\Formatter as BaseFormatter;
  *
  * @package \Lemon\Log\Formatter
  */
-class XML extends BaseFormatter
+class XML extends AbstractFormatter
 {
     /**
      * Formate le log

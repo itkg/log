@@ -17,14 +17,13 @@ class Factory
      * ou celui par défaut si aucun n'est spécifié
      * Appel la méthode load du logger créé avant de le retourner
      * 
-     * @static
      * @param string $writter
      * @param string $formatter
      * @param array $parameters
      * 
-     * @return \Lemon\Log\Logger
+     * @return \Lemon\Log\AbstractLogger
      */
-    public static function getLogger($logger = '', $formatter = '', array $params = array(), IdGeneratorInterface $idGenerator = null)
+    public function getLogger($logger = '', $formatter = '', array $params = array(), IdGeneratorInterface $idGenerator = null)
     {
         /**
          * Si aucun formatter n'est passé, on utilise celui par défaut
