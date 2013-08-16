@@ -16,6 +16,11 @@ use Lemon\Config;
  */
 abstract class AbstractLogger extends Config implements LoggerInterface 
 {
+    /**
+     * Log levels
+     * 
+     * @var array
+     */
     protected $levels = array(
         LogLevel::EMERGENCY,
         LogLevel::ALERT,
@@ -27,7 +32,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
         LogLevel::DEBUG,
     );
     
-	/**
+    /**
      * ID du log
      *
      * @var int
@@ -35,9 +40,9 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     protected $id;
   
     /**
-     * Formatter de log
+     * Lof Formatter 
      *
-     * @var Lemon\Log\Formatter
+     * @var Lemon\Log\AbstractFormatter
      */
     protected $formatter;
 
@@ -49,7 +54,11 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     protected $idGenerator;
 
     /**
-     * Constructeur
+     * Constructor
+     * 
+     * @param array  $params      List of parameters
+     * @param AbstractFormatter $formatter   Formatter
+     * @param IdGeneratorInterface $idGenerator Specific Id Generator
      */
     public function __construct(array $params = array(), AbstractFormatter $formatter = null, IdGeneratorInterface $idGenerator = null)
     {
@@ -64,10 +73,9 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     }
 
     /**
-     * Initialisation du log ID
-     * pour l'ensemble d'une transaction.
+     * Init log ID
      *
-     * @param string $identifier Libellé concaténé au logId (identifiant la transaction)
+     * @param string $identifier identifier concatenate to log ID
      */
     public function init($identifier)
     {
@@ -95,10 +103,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     }
     
     /**
-     * Méthode utilisable pour effectuer un traitement particulier suite au 
-     * chargement des paramètres
-     * 
-     * Doit être surchargé pour les traitements spécifiques
+     * Validate required parameters
      */
     public function load()
     {
@@ -128,20 +133,31 @@ abstract class AbstractLogger extends Config implements LoggerInterface
         return $this;
     }
     
-	public function getIdGenerator()
-	{
-		return $this->idGenerator;
-	}
+    /**
+     * Get idGenerator
+     * 
+     * @return IdGeneratorInterface Id Generator
+     */
+    public function getIdGenerator()
+    {
+        return $this->idGenerator;
+    }
 
-	public function setIdGenerator(\Lemon\Log\Helper\IdGeneratorInterface $idGenerator)
-	{
-		$this->idGenerator = $idGenerator;
+    /**
+     * Set idGenerator
+     * @param \Lemon\Log\Helper\IdGeneratorInterface $idGenerator Id Generator
+     *
+     * @return AbstractLogger Current instance 
+     */
+    public function setIdGenerator(\Lemon\Log\Helper\IdGeneratorInterface $idGenerator)
+    {
+        $this->idGenerator = $idGenerator;
 
         return $this;
-	}
+    }
     
     /**
-     * génère le log id
+     * generate a log ID
      * 
      * @return int
      */
@@ -270,5 +286,13 @@ abstract class AbstractLogger extends Config implements LoggerInterface
         $this->write($level, $this->formatter->format($message));
     }
 
+    /**
+     * Write the log
+     *
+     * @abstract
+     * 
+     * @param  string $level   log level
+     * @param  string $message message to write
+     */
     abstract protected function write($level, $message);
 }

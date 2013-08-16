@@ -5,15 +5,15 @@ namespace Lemon\Log\Formatter;
 use Lemon\Log\AbstractFormatter;
 
 /**
- * Classe de formatage XMLFormatter
- * Transforme une chaine en objet simpleXML
+ * Class XML
  *
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  * @package \Lemon\Log\Formatter
  */
 class XML extends AbstractFormatter
 {
     /**
-     * Formate le log
+     * Format a SimpleXMLElement log 
      *
      * @param string $log
      */

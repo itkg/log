@@ -3,7 +3,7 @@
 namespace Lemon\Log\Helper;
 
 /**
- * Classe IdGenerator
+ * Class IdGenerator
  *
  * Create a custom ID
  * 
@@ -12,19 +12,20 @@ namespace Lemon\Log\Helper;
 class IdGenerator implements IdGeneratorInterface
 {
     /**
-     * Génère un ID compris entre $start et $end précédé de $char
+     * Create an ID between $start & $end starting by $char and date
      * 
-     * @param int $start
-     * @param int $end
-     * @param string $char
+     * @param int $start Use for random
+     * @param int $end Use for random
+     * @param string $char ID prefix
      * @param boolean $bDate if true ID start with date
+     * 
      * @return string
      */
     public function generate($start = 1000, $end = 1000000, $char = '#', $bdate = true)
     {
         $id = $char.\rand($start, $end);
         
-        // Si on souhaite la date en début de log
+        // If we want date
         if($bdate) {
             $id = date('m/d/y H:i:s') . " " .$id;
         }

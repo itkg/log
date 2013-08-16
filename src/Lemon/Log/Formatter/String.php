@@ -5,15 +5,15 @@ namespace Lemon\Log\Formatter;
 use Lemon\Log\AbstractFormatter;
 
 /**
- * Classe de formatage StringFormatter
- * Encode les logs en utf_8
- *
+ * Class String
+ * 
  * @package \Lemon\Log\Formatter
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 class String extends AbstractFormatter
 {
     /**
-     * Formate le log
+     * UTF-8 encode the log
      *
      * @param string $log
      */

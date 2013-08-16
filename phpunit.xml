@@ -19,10 +19,10 @@
         <testsuite>
             <directory suffix="Test.php">tests/</directory>
         </testsuite>
-	<testsuite name="Library Test Suite">
+    <testsuite name="Library Test Suite">
             <directory>./src</directory>
-	    <exclude>./vendor</exclude>
-	    <exclude>./tests</exclude>
+        <exclude>./vendor</exclude>
+        <exclude>./tests</exclude>
         </testsuite>
     </testsuites>
     <logging>

@@ -12,10 +12,10 @@ use Lemon\Log\AbstractLogger;
 class ErrorLog extends AbstractLogger
 {
     /**
-     * Ecrit le log dans l'error_log
-     *
-     * @param string $level
-     * @param string $message
+     * Write to error_log
+     * 
+     * @param string $level log level
+     * @param string $message message
      */
     protected function write($level, $message)
     {

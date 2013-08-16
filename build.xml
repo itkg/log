@@ -100,23 +100,23 @@
  </target>
 
 <target name="phpcs-ci" description="Generate checkstyle.xml using PHP_CodeSniffer">
-		<exec logoutput="true" command="phpcs --report=checkstyle --report-file=${basedir}/build/logs/checkstyle.xml --standard=PEAR ${source}" />
+        <exec logoutput="true" command="phpcs --report=checkstyle --report-file=${basedir}/build/logs/checkstyle.xml --standard=PEAR ${source}" />
 </target>
 
 <target name="phpdoc" description="Generate API documentation using PHPDocumentor">
-	<exec logoutput="true" command="phpdoc -d ${source} -t ${basedir}/build/api" />
+    <exec logoutput="true" command="phpdoc -d ${source} -t ${basedir}/build/api" />
 </target>
 
 <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
-	<exec logoutput="true" command="phpcb --log ${basedir}/build/logs --source ${source} --output ${basedir}/build/code-browser" />
+    <exec logoutput="true" command="phpcb --log ${basedir}/build/logs --source ${source} --output ${basedir}/build/code-browser" />
 </target>
 
 
  <target name="phpunit" description="Run unit tests using PHPUnit and generates junit.xml and clover.xml">
-		<exec logoutput="true" command="phpunit --configuration=phpunit.xml --log-junit build/logs/phpunit.xml
-			--coverage-clover build/logs/clover.xml
-			--coverage-html build/coverage" />
-	</target>
+        <exec logoutput="true" command="phpunit --configuration=phpunit.xml --log-junit build/logs/phpunit.xml
+            --coverage-clover build/logs/clover.xml
+            --coverage-html build/coverage" />
+    </target>
 
  <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
   <exec executable="phpcb">

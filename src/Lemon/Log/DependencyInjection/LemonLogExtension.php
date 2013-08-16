@@ -8,12 +8,17 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\Config\FileLocator;
 
 /**
+ * Extension for lemon log lib
+ * 
  * Class LemonLogExtension
  *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 class LemonLogExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader(
@@ -26,6 +31,9 @@ class LemonLogExtension extends Extension
         $loader->load('factory.xml');
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAlias() 
     {
         return 'lemon_log';

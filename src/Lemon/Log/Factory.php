@@ -3,7 +3,7 @@
 namespace Lemon\Log;
 
 /**
- * Classe factory pour les log\Logger
+ * Class factory
  *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  *
@@ -13,13 +13,12 @@ class Factory
 {
 
     /**
-     * Renvoi le Logger passé en paramètre
-     * ou celui par défaut si aucun n'est spécifié
-     * Appel la méthode load du logger créé avant de le retourner
+     * Create a specifig logger with formatter, parameters and IdGenerator
      * 
-     * @param string $writter
-     * @param string $formatter
-     * @param array $parameters
+     * @param string $logger Logger ID
+     * @param string $formatter Formatter ID
+     * @param array $parameters Logger parameters
+     * @param IdGeneratorInterface $idGenerator Specific IdGenerator
      * 
      * @return \Lemon\Log\AbstractLogger
      */

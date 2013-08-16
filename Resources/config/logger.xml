@@ -4,11 +4,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-	<parameters>
-		<parameter key="log.logger.display.class">Lemon\Log\Logger\Display</parameter>
-		<parameter key="log.logger.error_log.class">Lemon\Log\Logger\ErrorLog</parameter>
+    <parameters>
+        <parameter key="log.logger.display.class">Lemon\Log\Logger\Display</parameter>
+        <parameter key="log.logger.error_log.class">Lemon\Log\Logger\ErrorLog</parameter>
         <parameter key="log.logger.file.class">Lemon\Log\Logger\File</parameter>
-        <parameter key="log.logger.soap.class">Lemon\Log\Logger\Soap</parameter>
         <parameter key="log.logger.syslog.class">Lemon\Log\Logger\Syslog</parameter>
 
         <parameter key="log.logger.file.params" type="collection" />
@@ -20,9 +19,7 @@
         <service id="log.logger.file"      class="%log.logger.file.class%"      public="true">
             <argument>%log.logger.file.params%</argument>
         </service>
-        <service id="log.logger.soap"      class="%log.logger.soap.class%"      public="true" >
-            <argument>%log.logger.soap.params%</argument>
-        </service>
+     
         <service id="log.logger.syslog"      class="%log.logger.syslog.class%"    public="true" />
 
         <!-- Default Formatter -->

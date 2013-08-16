@@ -5,19 +5,17 @@ namespace Lemon\Log\Logger;
 use Lemon\Log\AbstractLogger;
 
 /**
- * Classe Logger par echo
- * Affiche le log directement à l'écran
- * Utile pour la phase de dev
+ * Display log (echo)
  *
  * @package \Lemon\Log\Logger
  */
 class Display extends AbstractLogger
 {
     /**
-     * Affiche le log à l'écran
+     * Display log to screen
      * 
-     * @param string $level
-     * @param string $message
+     * @param string $level log level
+     * @param string $message message
      */
     protected function write($level, $message)
     {

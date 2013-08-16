@@ -19,8 +19,8 @@ $logger = \Lemon::get('log.logger.display');
 $formatter = \Lemon::get('log.formatter.default');
 $idGenerator = \Lemon::get('log.helper.id_generator.default');
 $logger
-	->setFormatter($formatter)
-	->setIdGenerator($idGenerator)
+    ->setFormatter($formatter)
+    ->setIdGenerator($idGenerator)
     ->load();
 $logger->init('My IDENTIFIER');
 $logger->notice('My Echo Writer works');
@@ -28,7 +28,7 @@ $logger->notice('My Echo Writer works');
 // A simple & good way to use a logger
 
 $logger = \Lemon::get('log.factory')
-	->getLogger('log.logger.display');
+    ->getLogger('log.logger.display');
 $logger->init('My IDENTIFIER');
 
 $logger->notice('My Echo Writer works notice message');
@@ -48,7 +48,7 @@ $logger->error('My Echo Writer works error message');
 echo '<br />Use default : ';
 
 $logger = \Lemon::get('log.factory')
-	->getLogger();
+    ->getLogger();
 $logger->init('My IDENTIFIER');
 
 $logger->notice('My Echo Writer works notice message');
@@ -66,9 +66,9 @@ $logger->init('My IDENTIFIER');
 $logger->error('My Echo Writer works error message');
 
 $logger = \Lemon::get('log.factory')->getLogger(
-	'log.logger.file', 
-	'simple',
-	array('file' => __DIR__.'/../var/logs/sample.log')
+    'log.logger.file', 
+    'simple',
+    array('file' => __DIR__.'/../var/logs/sample.log')
 );
 
 $logger->init('My IDENTIFIER');

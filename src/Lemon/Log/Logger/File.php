@@ -18,23 +18,29 @@ class File extends AbstractLogger
      */
     protected $file;
 
+    /**
+     * Required parameters
+     * 
+     * @var array
+     */
     protected $requiredParams = array(
         'file'
     );
 
     /**
-     * Récupération des paramêtres utiles au Logger
+     * {@inheritdoc}
      */
     public function load()
     {
         $this->file = $this->params['file'];
+        parent::load();
     }
 
     /**
-     * Ecrit le log dans un fichier
-     *
-     * @param string $level
-     * @param string $message
+     * Write to file
+     * 
+     * @param string $level log level
+     * @param string $message message
      */
     protected function write($level, $message)
     {

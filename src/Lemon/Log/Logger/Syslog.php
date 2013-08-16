@@ -24,10 +24,10 @@ class Syslog extends AbstractLogger
     );
 
     /**
-     * Ecrit le log dans le syslog
-     *
-     * @param string $level
-     * @param string $message
+     * Write to syslog
+     * 
+     * @param string $level log level
+     * @param string $message message
      */
     protected function write($level, $message)
     {
