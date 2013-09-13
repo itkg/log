@@ -1,27 +1,27 @@
 {
-    "name":         "pdenis/lemon-logs",
+    "name":         "itkg/itkg-log",
     "type":         "library",
-    "description":  "Lemon logs library",
-    "keywords":     ["library", "log", "lemon"],
-    "homepage":     "http://github.com/pdenis/lemon-logs",
+    "description":  "Itkg log library",
+    "keywords":     ["library", "log", "itkg", "interakting"],
+    "homepage":     "http://github.com/pdenis/Itkg-logs",
     "license":      "MIT",
     "authors":      [
         {
-            "name":     "Pascal Denis",
-            "email":    "pascal.denis.75@gmail.com"
+            "name":     "Interakting",
+            "email":    "itkg@interakting.com"
         }
     ],
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
     },
     "require": {
-        "pdenis/lemon-core": "1.0",
+        "itkg/Itkg-core": "1.0",
         "php": ">=5.3.3",
         "psr/log": "1.0.0"
     },
     "autoload": {
         "psr-0": {
-            "Lemon\\Log": "src"
+            "Itkg\\Log": "src"
         }
     }
 }
