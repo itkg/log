@@ -6,11 +6,11 @@
     "hash": "7c0948a1f515960a8f552c3e6e151fb9",
     "packages": [
         {
-            "name": "pdenis/lemon-core",
+            "name": "pdenis/Itkg-core",
             "version": "1.0",
             "source": {
                 "type": "git",
-                "url": "git://github.com/pdenis/lemon-core.git",
+                "url": "git://github.com/pdenis/Itkg-core.git",
                 "reference": "origin/master"
             },
             "type": "library"
