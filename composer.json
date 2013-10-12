@@ -15,7 +15,7 @@
         "phpunit/phpunit": "3.7.*"
     },
     "require": {
-        "itkg/itkg-core": "1.0",
+        "itkg/core": "dev-master",
         "php": ">=5.3.3",
         "psr/log": "1.0.0"
     },
