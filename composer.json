@@ -1,9 +1,9 @@
 {
-    "name":         "itkg/itkg-log",
+    "name":         "itkg/log",
     "type":         "library",
     "description":  "Itkg log library",
     "keywords":     ["library", "log", "itkg", "interakting"],
-    "homepage":     "http://github.com/pdenis/Itkg-logs",
+    "homepage":     "http://github.com/itkg/log",
     "license":      "MIT",
     "authors":      [
         {
@@ -15,7 +15,7 @@
         "phpunit/phpunit": "3.7.*"
     },
     "require": {
-        "itkg/Itkg-core": "1.0",
+        "itkg/itkg-core": "1.0",
         "php": ">=5.3.3",
         "psr/log": "1.0.0"
     },
