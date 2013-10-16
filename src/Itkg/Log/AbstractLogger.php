@@ -126,7 +126,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
      * 
      * @param Formatter $formatter 
      */
-    public function setFormatter(Formatter $formatter)
+    public function setFormatter(AbstractFormatter $formatter)
     {
         $this->formatter = $formatter;
         $this->formatter->setLogger($this);
