@@ -3,6 +3,7 @@
 namespace Itkg\Log;
 
 use Itkg\Log\Helper\IdGenerator;
+use Itkg\Log\Helper\IdGeneratorInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Itkg\Config;

@@ -2,6 +2,7 @@
 
 namespace Itkg\Log\Helper;
 
+use Itkg\Log\Helper\IdGeneratorInterface;
 /**
  * Class IdGenerator
  *
