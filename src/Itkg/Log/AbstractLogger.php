@@ -12,14 +12,14 @@ use Itkg\Config;
  * Class Logger
  *
  * @abstract
- * 
+ *
  * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
-abstract class AbstractLogger extends Config implements LoggerInterface 
+abstract class AbstractLogger extends Config implements LoggerInterface
 {
     /**
      * Log levels
-     * 
+     *
      * @var array
      */
     protected $levels = array(
@@ -32,16 +32,16 @@ abstract class AbstractLogger extends Config implements LoggerInterface
         LogLevel::INFO,
         LogLevel::DEBUG,
     );
-    
+
     /**
      * ID du log
      *
      * @var int
      */
     protected $id;
-  
+
     /**
-     * Lof Formatter 
+     * Lof Formatter
      *
      * @var Itkg\Log\AbstractFormatter
      */
@@ -49,14 +49,14 @@ abstract class AbstractLogger extends Config implements LoggerInterface
 
     /**
      * ID Generator
-     * 
+     *
      * @var Itkg\Log\Helper\IdGeneratorInterface
      */
     protected $idGenerator;
 
     /**
      * Constructor
-     * 
+     *
      * @param array  $params      List of parameters
      * @param AbstractFormatter $formatter   Formatter
      * @param IdGeneratorInterface $idGenerator Specific Id Generator
@@ -85,24 +85,24 @@ abstract class AbstractLogger extends Config implements LoggerInterface
 
     /**
      * Getter ID
-     * 
+     *
      * @return string
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Setter ID
-     * 
+     *
      * @param string $id
      */
     public function setId($id)
     {
         $this->id = $id;
     }
-    
+
     /**
      * Validate required parameters
      */
@@ -110,21 +110,21 @@ abstract class AbstractLogger extends Config implements LoggerInterface
     {
         $this->validateParams();
     }
-    
+
     /**
      * Get formatter
-     * 
-     * @return Formatter 
+     *
+     * @return Formatter
      */
     public function getFormatter()
     {
         return $this->formatter;
     }
-    
+
     /**
      * Set formatter
-     * 
-     * @param Formatter $formatter 
+     *
+     * @param Formatter $formatter
      */
     public function setFormatter(AbstractFormatter $formatter)
     {
@@ -133,10 +133,10 @@ abstract class AbstractLogger extends Config implements LoggerInterface
 
         return $this;
     }
-    
+
     /**
      * Get idGenerator
-     * 
+     *
      * @return IdGeneratorInterface Id Generator
      */
     public function getIdGenerator()
@@ -148,7 +148,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
      * Set idGenerator
      * @param \Itkg\Log\Helper\IdGeneratorInterface $idGenerator Id Generator
      *
-     * @return AbstractLogger Current instance 
+     * @return AbstractLogger Current instance
      */
     public function setIdGenerator(\Itkg\Log\Helper\IdGeneratorInterface $idGenerator)
     {
@@ -156,13 +156,13 @@ abstract class AbstractLogger extends Config implements LoggerInterface
 
         return $this;
     }
-    
+
     /**
      * generate a log ID
-     * 
+     *
      * @return int
      */
-    protected function generateId() 
+    protected function generateId()
     {
         if(!$this->idGenerator) {
             return '';
@@ -283,7 +283,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
         if(!in_array($level, $this->levels)) {
             throw new \Psr\Log\InvalidArgumentException(sprintf('Level %s does not exist', $level));
         }
-        $this->formatter->addParameters($context);
+        $this->formatter->mergeParams($context);
         $this->write($level, $this->formatter->format($message));
     }
 
@@ -291,7 +291,7 @@ abstract class AbstractLogger extends Config implements LoggerInterface
      * Write the log
      *
      * @abstract
-     * 
+     *
      * @param  string $level   log level
      * @param  string $message message to write
      */
