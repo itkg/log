@@ -2,6 +2,8 @@
 
 namespace Itkg\Log;
 
+use Symfony\Component\DependencyInjection\ContainerAware;
+
 /**
  * Class factory
  *
@@ -9,7 +11,7 @@ namespace Itkg\Log;
  *
  * @package \Itkg\Log
  */
-class Factory 
+class Factory extends ContainerAware
 {
 
     /**
@@ -27,23 +29,23 @@ class Factory
         /**
          * Si aucun formatter n'est passé, on utilise celui par défaut
          */
-        if(!\Itkg::has($formatter)) {
-            $formatter = \Itkg::get('log.formatter.default');
+        if(!$this->container->has($formatter)) {
+            $formatter = $this->container->get('log.formatter.default');
         }else {
-            $formatter = \Itkg::get($formatter);
+            $formatter = $this->container->get($formatter);
         }
 
         if(!is_object($idGenerator)) {
-            $idGenerator = \Itkg::get('log.helper.id_generator.default');
+            $idGenerator = $this->container->get('log.helper.id_generator.default');
         }
         
         /**
          * On renvoie le Logger par défaut
          */              
         if(!\Itkg::has($logger)) {
-            $logger = \Itkg::get('log.logger.default');
+            $logger = $this->container->get('log.logger.default');
         }else {
-            $logger = \Itkg::get($logger);
+            $logger = $this->container->get($logger);
         }
 
         $logger

@@ -8,6 +8,10 @@
         <parameter key="log.factory.class">Itkg\Log\Factory</parameter>
     </parameters>
     <services>
-        <service id="log.factory" class="%log.factory.class%" public="true" />
+        <service id="log.factory" class="%log.factory.class%" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
     </services>
 </container>
