@@ -30,20 +30,20 @@ class Factory extends ContainerAware
          * Si aucun formatter n'est passé, on utilise celui par défaut
          */
         if(!$this->container->has($formatter)) {
-            $formatter = $this->container->get('log.formatter.default');
+            $formatter = $this->container->get('itkg_log.formatter.default');
         }else {
             $formatter = $this->container->get($formatter);
         }
 
         if(!is_object($idGenerator)) {
-            $idGenerator = $this->container->get('log.helper.id_generator.default');
+            $idGenerator = $this->container->get('itkg_log.helper.id_generator.default');
         }
         
         /**
          * On renvoie le Logger par défaut
          */              
         if(!\Itkg::has($logger)) {
-            $logger = $this->container->get('log.logger.default');
+            $logger = $this->container->get('itkg_log.logger.default');
         }else {
             $logger = $this->container->get($logger);
         }

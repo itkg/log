@@ -21,6 +21,9 @@ class ItkgLogExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
+        $configuration = $this->getConfiguration($configs, $container);
+        $config = $this->processConfiguration($configuration, $configs);
+
         $loader = new XmlFileLoader(
             $container,
             new FileLocator(__DIR__.'/../../../../Resources/config')
@@ -29,13 +32,5 @@ class ItkgLogExtension extends Extension
         $loader->load('logger.xml');
         $loader->load('helper.xml');
         $loader->load('factory.xml');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAlias() 
-    {
-        return 'Itkg_log';
     }
 }

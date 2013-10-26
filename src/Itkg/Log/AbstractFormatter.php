@@ -2,7 +2,7 @@
 
 namespace Itkg\Log;
 
-use Itkg\Config;
+use Itkg\Core\Config;
 
 /**
  * Class AbstractFormatter

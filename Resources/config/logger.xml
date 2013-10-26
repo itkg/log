@@ -5,24 +5,24 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="log.logger.display.class">Itkg\Log\Logger\Display</parameter>
-        <parameter key="log.logger.error_log.class">Itkg\Log\Logger\ErrorLog</parameter>
-        <parameter key="log.logger.file.class">Itkg\Log\Logger\File</parameter>
-        <parameter key="log.logger.syslog.class">Itkg\Log\Logger\Syslog</parameter>
+        <parameter key="itkg_log.logger.display.class">Itkg\Log\Logger\Display</parameter>
+        <parameter key="itkg_log.logger.error_log.class">Itkg\Log\Logger\ErrorLog</parameter>
+        <parameter key="itkg_log.logger.file.class">Itkg\Log\Logger\File</parameter>
+        <parameter key="itkg_log.logger.syslog.class">Itkg\Log\Logger\Syslog</parameter>
 
-        <parameter key="log.logger.file.params" type="collection" />
-        <parameter key="log.logger.soap.params" type="collection" />
+        <parameter key="itkg_log.logger.file.params" type="collection" />
+        <parameter key="itkg_log.logger.soap.params" type="collection" />
     </parameters>
     <services>
-        <service id="log.logger.display"   class="%log.logger.display.class%"   public="true" />
-        <service id="log.logger.error_log" class="%log.logger.error_log.class%" public="true" />
-        <service id="log.logger.file"      class="%log.logger.file.class%"      public="true">
-            <argument>%log.logger.file.params%</argument>
+        <service id="itkg_log.logger.display"   class="%itkg_log.logger.display.class%"   public="true" />
+        <service id="itkg_log.logger.error_log" class="%itkg_log.logger.error_log.class%" public="true" />
+        <service id="itkg_log.logger.file"      class="%itkg_log.logger.file.class%"      public="true">
+            <argument>%itkg_log.logger.file.params%</argument>
         </service>
      
-        <service id="log.logger.syslog"      class="%log.logger.syslog.class%"    public="true" />
+        <service id="itkg_log.logger.syslog" class="%itkg_log.logger.syslog.class%" public="true" />
 
         <!-- Default Formatter -->
-        <service id="log.logger.default" alias="log.logger.display" />
+        <service id="itkg_log.logger.default" alias="itkg_log.logger.display" />
     </services>
 </container>
