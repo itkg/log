@@ -11,7 +11,11 @@ use Itkg\Log\AbstractLogger;
  */
 class Syslog extends AbstractLogger
 {
-    
+    /**
+     * Syslog levels
+     *
+     * @var array
+     */
     static $LEVELS = array(
         'emergency' => LOG_EMERG,
         'alert'     => LOG_ALERT,

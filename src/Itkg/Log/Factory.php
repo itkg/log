@@ -27,7 +27,7 @@ class Factory extends ContainerAware
     public function getLogger($logger = '', $formatter = '', array $params = array(), IdGeneratorInterface $idGenerator = null)
     {
         /**
-         * Si aucun formatter n'est passé, on utilise celui par défaut
+         * If no formatter ID we use default formatter
          */
         if(!$this->container->has($formatter)) {
             $formatter = $this->container->get('itkg_log.formatter.default');
@@ -40,7 +40,7 @@ class Factory extends ContainerAware
         }
         
         /**
-         * On renvoie le Logger par défaut
+         * If no logger defined we use default logger
          */              
         if(!\Itkg::has($logger)) {
             $logger = $this->container->get('itkg_log.logger.default');
@@ -53,8 +53,9 @@ class Factory extends ContainerAware
             ->setParams($params)
             ->setIdGenerator($idGenerator);
         $logger->load();
+
         /**
-         * On renvoie le Logger défini
+         * Return created logger
          */
         return $logger;
     }
