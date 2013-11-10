@@ -13,13 +13,13 @@ class ErrorLog extends AbstractLogger
 {
     /**
      * Write to error_log
-     * 
+     *
      * @param string $level log level
      * @param string $message message
      */
     protected function write($level, $message)
     {
-        error_log($this->id.$log);
+        error_log($this->id . $message);
     }
 
 }

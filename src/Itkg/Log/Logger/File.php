@@ -20,7 +20,7 @@ class File extends AbstractLogger
 
     /**
      * Required parameters
-     * 
+     *
      * @var array
      */
     protected $requiredParams = array(
@@ -38,16 +38,16 @@ class File extends AbstractLogger
 
     /**
      * Write to file
-     * 
+     *
      * @param string $level log level
      * @param string $message message
      */
     protected function write($level, $message)
     {
-        if(file_exists($this->file)) {
-            file_put_contents($this->file, $this->id.$message.PHP_EOL, FILE_APPEND);
-        }else {
-            file_put_contents($this->file, $this->id.$message.PHP_EOL);
+        if (file_exists($this->file)) {
+            file_put_contents($this->file, $this->id . $message . PHP_EOL, FILE_APPEND);
+        } else {
+            file_put_contents($this->file, $this->id . $message . PHP_EOL);
         }
     }
 }

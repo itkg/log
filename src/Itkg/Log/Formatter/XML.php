@@ -13,9 +13,10 @@ use Itkg\Log\AbstractFormatter;
 class XML extends AbstractFormatter
 {
     /**
-     * Format a SimpleXMLElement log 
+     * Format a SimpleXMLElement log
      *
      * @param string $log
+     * @return string
      */
     public function format($log)
     {
