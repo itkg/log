@@ -1,7 +1,7 @@
 Log management library
 ======================
 
-This library is implements PSR-3
+This library is PSR-3 compatible
 
 * Loggers
 TODO
