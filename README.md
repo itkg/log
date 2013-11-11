@@ -1,10 +1,42 @@
 Log management library
 ======================
 
-This library is PSR-3 compatible
+## features
+* PSR-3 compatible
+* Different loggers implementation (display, file, syslog, error_log, etc)
+* Specific Formatter to manipulate log format
 
-* Loggers
-TODO
+## Installation
 
-* Formatters
-TODO
+### Installation by Composer
+
+If you use composer, add ExtraFormBundle bundle as a dependency to the composer.json of your application
+
+```php
+    "require": {
+        ...
+        "itkg/log": "dev-master"
+        ...
+    },
+
+```
+
+If you use itkg/core DIC, you can do :
+
+```php
+// app/AppKernel.php
+<?php
+    // ...
+    $core = new Itkg\Core('../../var/cache/itkg_cache.php', true);
+
+    // Add extension
+    $core->registerExtension(new \Itkg\Consumer\DependencyInjection\ItkgLogExtension());
+    $core->load();
+
+```
+
+## Usage
+
+* Logger
+
+* Formatter
