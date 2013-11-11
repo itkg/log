@@ -30,7 +30,7 @@ If you use itkg/core DIC, you can do :
     $core = new Itkg\Core('../../var/cache/itkg_cache.php', true);
 
     // Add extension
-    $core->registerExtension(new \Itkg\Consumer\DependencyInjection\ItkgLogExtension());
+    $core->registerExtension(new \Itkg\Log\DependencyInjection\ItkgLogExtension());
     $core->load();
 
 ```
