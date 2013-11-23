@@ -31,6 +31,6 @@ class ItkgLogExtension extends Extension
         $loader->load('formatter.xml');
         $loader->load('logger.xml');
         $loader->load('helper.xml');
-        $loader->load('factory.xml');
+        $loader->load('builder.xml');
     }
 }
