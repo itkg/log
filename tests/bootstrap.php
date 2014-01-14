@@ -9,6 +9,7 @@ $loader->add('Itkg\\Log', array(
     __DIR__.'/../tests'
 ));
 
-$loader->add('Itkg\\LogTest', array(
+$loader->add('Itkg\\Log', array(
+    __DIR__.'/../src',
     __DIR__.'/../tests'
 ));
