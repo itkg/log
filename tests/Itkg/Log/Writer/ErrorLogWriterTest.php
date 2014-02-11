@@ -56,6 +56,7 @@ class ErrorLogWriterTest extends \PHPUnit_Framework_TestCase
        ob_start();
        $this->object->write("test");
        $out = ob_get_contents();
+       ob_end_clean();
        $this->assertEquals($out, $this->object->getId()."test".PHP_EOL);
     }
     /**
