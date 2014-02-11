@@ -43,6 +43,21 @@ class EchoWriterTest extends \PHPUnit_Framework_TestCase
        $this->assertEquals(array(), $this->object->getParameters());
     }
     
+    /**
+     * @covers Itkg\Log\Writer\EchoWriter::write
+     * @covers Itkg\Log\Writer\EchoWriter::getFormatter
+     * @covers Itkg\Log\Writer\EchoWriter::getParameters
+     */
+    public function testWrite()
+    {
+       $formatter = new Formatter;
+       $parameters = array('params');
+       $this->object = new EchoWriter($formatter, $parameters);
+       ob_start();
+       $this->object->write("test");
+       $out = ob_get_contents();
+       $this->assertEquals($out, $this->object->getId()."test".PHP_EOL);
+    }
     
     /**
      * Tears down the fixture, for example, closes a network connection.

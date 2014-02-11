@@ -42,6 +42,21 @@ class SysLogWriterTest extends \PHPUnit_Framework_TestCase
        $this->object = new SysLogWriter($formatter);
        $this->assertEquals(array(), $this->object->getParameters());
     }
+    /**
+     * @covers Itkg\Log\Writer\SysLogWriter::write
+     * @covers Itkg\Log\Writer\SysLogWriter::getFormatter
+     * @covers Itkg\Log\Writer\SysLogWriter::getParameters
+     */
+    public function testWrite()
+    {
+       $formatter = new Formatter;
+       $parameters = array('params');
+       $this->object = new SysLogWriter($formatter, $parameters);
+       ob_start();
+       $this->object->write("test");
+       $out = ob_get_contents();
+       $this->assertEquals($out, $this->object->getId()."test".PHP_EOL);
+    }
     
     
     /**
