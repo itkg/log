@@ -19,10 +19,10 @@ class SimpleFormatter extends BaseFormatter
     /**
      * Formate le log
      *
-     * @param string $log
+     * @param array $record
      */
-    public function format($log) 
+    public function format(array $record)
     {
-        return $log;
+        return $record['message'];
     }
 }

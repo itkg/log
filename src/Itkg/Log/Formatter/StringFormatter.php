@@ -19,10 +19,10 @@ class StringFormatter extends BaseFormatter
     /**
      * Formate le log
      *
-     * @param string $log
+     * @param array $record
      */
-    public function format($log)
+    public function format(array $record)
     {
-        return utf8_encode($log);
+        return utf8_encode($record['message']);
     }
 }

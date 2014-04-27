@@ -3,6 +3,7 @@
 namespace Itkg\Log;
 
 use Itkg\Log;
+
 /**
  * Classe factory pour les log\Writer
  *
@@ -27,29 +28,52 @@ class Factory
      *
      * @return \Itkg\Log\Writer
      */
-    public static function getWriter($writer = '', $formatter = '', array $parameters = array())
+    public static function getLogger(array $handlers, $channel = 'DEFAULT')
     {
-        /**
-         * Si aucun formatter n'est passé, on utilise celui par défaut
-         */
-        if(!isset(Log::$config['FORMATTERS'][$formatter])) {
-                $formatter = new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]();
-        }else {
-            $formatter = new Log::$config['FORMATTERS'][$formatter]();
+        $logger = null;
+        if(is_array($handlers)) {
+            $logger = new \Itkg\Log\Logger($channel);
+            $logger->init();
+            if(!empty($handlers)) {
+                foreach($handlers as $h) {
+                    if(isset($h['handler'])) {
+                        $handler = $h['handler'];
+                        if(isset($h['formatter'])) {
+                            $formatter = self::getFormatter($h['formatter']);
+                        }else {
+                            $formatter = new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]();
+                        }
+                        $handler->setFormatter($formatter);
+                        $logger->pushHandler($handler);
+                    }
+                }
+            }else {
+                if(isset(Log::$config['DEFAULT_HANDLER']) && is_object(Log::$config['DEFAULT_HANDLER'])) {
+                    $handler = Log::$config['DEFAULT_HANDLER'];
+                    $handler->setFormatter(new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]());
+                    $logger->pushHandler($handler);
+                }
+            }
         }
 
-        /**
-         * On renvoie le writer par défaut
-         */              
-        if(!isset(Log::$config['WRITERS'][$writer])) {
-            return new \Itkg\Log::$config['WRITERS'][Log::$config['DEFAULT_WRITER']]($formatter);
+        return $logger;
+    }
+
+    /**
+     * Renvoie un log formatter
+     * - Si $formatter est une clé, on ira chercher la classe associée dans la liste des formatters
+     * - Sinon on renvoie le formatter tel quel
+     *
+     * @param mixed $formatter
+     * @return mixed
+     */
+    protected static function getFormatter($formatter)
+    {
+
+        if (is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
+            return new Log::$config['FORMATTERS'][$formatter];
         }
 
-        $writer = new Log::$config['WRITERS'][$writer]($formatter, $parameters);
-        $writer->load();
-        /**
-         * On renvoie le writer défini
-         */
-        return $writer;
+        return $formatter;
     }
 }

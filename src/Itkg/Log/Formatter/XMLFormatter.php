@@ -19,10 +19,10 @@ class XMLFormatter extends BaseFormatter
     /**
      * Formate le log
      *
-     * @param string $log
+     * @param array $record
      */
-    public function format($log)
+    public function format(array $record)
     {
-        return simplexml_load_string(utf8_encode($log));
+        return simplexml_load_string(utf8_encode($record['message']));
     }
 }
