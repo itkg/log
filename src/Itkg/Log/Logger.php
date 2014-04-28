@@ -44,7 +44,7 @@ class Logger extends BaseLogger
     {
         $context['id'] = $this->id; // Add ID in context
 
-        parent::addRecord($level,$message, $context);
+        return parent::addRecord($level,$message, $context);
     }
     /**
      * Get ID
