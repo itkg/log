@@ -28,6 +28,6 @@ class Log
             'string' => 'Itkg\Log\Formatter\StringFormatter',
             'xml'    => 'Itkg\Log\Formatter\XMLFormatter'
         ),
-
+	    'LOGGER' => 'Itkg\Log\Logger'
     );
 }

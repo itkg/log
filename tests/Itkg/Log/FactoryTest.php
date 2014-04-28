@@ -2,6 +2,8 @@
 namespace Itkg\Log;
 
 use Itkg\Log\Factory;
+use Itkg\Log\Handler\EchoHandler;
+use Monolog\Handler\StreamHandler;
 
 /**
  * Classe pour les test phpunit pour la classe Factory
@@ -33,40 +35,56 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         
     }
 
-    /**
-     * @covers Itkg\Log\Factory::getWriter
-     */
-    public function testGetDefaultWriter()
+	/**
+	 * Test default handler
+	 */
+	public function testGetDefaultHandler()
     {
-        $writter = \Itkg\Log\Factory::getWriter();
-        $defaultWriterClass = \Itkg\Log::$config['WRITERS'][\Itkg\Log::$config['DEFAULT_WRITER']];
-        $this->assertEquals($defaultWriterClass, get_class($writter));
+	    \Itkg\Log::$config['DEFAULT_HANDLER'] = new EchoHandler();
+        $logger = \Itkg\Log\Factory::getLogger();
+	    $handler = $logger->popHandler();
+
+        $this->assertEquals($handler, \Itkg\Log::$config['DEFAULT_HANDLER']);
         
         $defaultFormatterClass = \Itkg\Log::$config['FORMATTERS'][\Itkg\Log::$config['DEFAULT_FORMATTER']];
-        $this->assertEquals($defaultFormatterClass, get_class($writter->getFormatter()));
+        $this->assertEquals($defaultFormatterClass, get_class($handler->getFormatter()));
         
     }
     
     /**
-     * @covers Itkg\Log\Factory::getWriter
+     * Test logger override
      */
-    public function testGetWriter()
+    public function testGetLogger()
     {
-        $writter = \Itkg\Log\Factory::getWriter('echo', 'simple');
-        $defaultWriterClass = \Itkg\Log::$config['WRITERS']['echo'];
-        $this->assertEquals($defaultWriterClass, get_class($writter));
-        
-        $defaultFormatterClass = \Itkg\Log::$config['FORMATTERS']['simple'];
-        $this->assertEquals($defaultFormatterClass, get_class($writter->getFormatter()));
+        $logger = \Itkg\Log\Factory::getLogger(array());
+        $defaultWriterClass = \Itkg\Log::$config['LOGGER'];
+        $this->assertEquals($defaultWriterClass, get_class($logger));
+
+	    \Itkg\Log::$config['LOGGER'] = 'Itkg\Log\NullLogger';
+	    $logger = \Itkg\Log\Factory::getLogger(array());
+	    $defaultWriterClass = \Itkg\Log::$config['LOGGER'];
+	    $this->assertEquals($defaultWriterClass, get_class($logger));
     }
     
     /**
-     * @covers Itkg\Log\Factory::getWriter
+     * test logger setting handler
      */
-    public function testGetWriterParameters()
+    public function testGetHandler()
     {
-        $writter = \Itkg\Log\Factory::getWriter('echo', 'simple', array('file' => 'error.log'));
-        $parameters = $writter->getParameters();
-        $this->assertEquals('error.log', $parameters['file']);
+	    $testHandler = new StreamHandler('/tmp/temp.log');
+
+	    $testFormatter = new Mock\Formatter();
+        $logger = \Itkg\Log\Factory::getLogger(
+	        array(
+		        array(
+			        'handler' => $testHandler,
+			        'formatter' => $testFormatter
+	            )
+            )
+        );
+	    $handler = $logger->popHandler();
+
+	    $this->assertEquals($testHandler, $handler);
+	    $this->assertEquals($testFormatter, $handler->getFormatter());
     }
 }

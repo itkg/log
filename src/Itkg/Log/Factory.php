@@ -26,13 +26,13 @@ class Factory
      * @param string $formatter
      * @param array $parameters
      *
-     * @return \Itkg\Log\Writer
+     * @return \Itkg\Log\Logger
      */
-    public static function getLogger(array $handlers, $channel = 'DEFAULT')
+    public static function getLogger(array $handlers = array(), $channel = 'DEFAULT')
     {
         $logger = null;
         if(is_array($handlers)) {
-            $logger = new \Itkg\Log\Logger($channel);
+            $logger = new Log::$config['LOGGER']($channel);
             $logger->init();
             if(!empty($handlers)) {
                 foreach($handlers as $h) {

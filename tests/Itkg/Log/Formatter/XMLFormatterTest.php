@@ -38,6 +38,6 @@ class XMLFormatterTest extends \PHPUnit_Framework_TestCase
         $text = "<itsatest>test with éàêâ</itsatest>";
                
         $testXml = simplexml_load_string(utf8_encode($text));
-        $this->assertEquals($testXml, $this->object->format($text));
+        $this->assertEquals($testXml, $this->object->format(array('message' => $text)));
     }
 }

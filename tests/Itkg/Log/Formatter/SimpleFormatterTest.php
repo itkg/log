@@ -36,6 +36,6 @@ class SimpleFormatterTest extends \PHPUnit_Framework_TestCase
     public function testFormat()
     {
         $text = "it's a test";
-        $this->assertEquals($text, $this->object->format($text));
+        $this->assertEquals($text, $this->object->format(array('message' => $text)));
     }
 }
