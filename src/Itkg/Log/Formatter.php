@@ -2,6 +2,8 @@
 
 namespace Itkg\Log;
 
+use Monolog\Formatter\FormatterInterface;
+
 /**
  * Classe abstraite pour les classes de formatages de log
  *
@@ -12,61 +14,21 @@ namespace Itkg\Log;
  * @abstract
  * @package \Itkg\Log
  */
-abstract class Formatter 
+abstract class Formatter implements FormatterInterface
 {
     /**
-     * Liste de paramètres
-     * 
-     * @var array
-     */
-    protected $parameters;
-    
-    
-    protected $writer;
-            
-    /**
-     * Constructeur 
-     */
-    public function __construct()
-    {
-
-    }
-    
-    /**
-     * Formate le log
+     * Format batch of records
      *
-     * @abstract
-     * @param string $log
+     * @param array $records
+     * @return mixed|string
      */
-    public abstract function format($log);
-    
-    /**
-     * Getter parameters
-     * 
-     * @return array
-     */
-    public function getParameters()
+    public function formatBatch(array $records)
     {
-        return $this->parameters;
-    }
-    
-    /**
-     * Setter parameters 
-     * 
-     * @param array $parameters
-     */
-    public function setParameters(array $parameters = array())
-    {
-        $this->parameters = $parameters;
-    }
-    
-    public function setWriter(\Itkg\Log\Writer $writer) 
-    {
-        $this->writer = $writer;
-    }
-    
-    public function getWriter() 
-    {
-        return $this->writer;
+        $message = '';
+        foreach($records as $record) {
+            $message .= $this->format($record);
+        }
+
+        return $message;
     }
 }

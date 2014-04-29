@@ -3,6 +3,7 @@
 namespace Itkg\Log\Writer;
 
 use Itkg\Log\Writer as BaseWriter;
+use Psr\Log\LogLevel;
 
 /**
  * Classe Writer pour les requetes soap
@@ -15,7 +16,7 @@ use Itkg\Log\Writer as BaseWriter;
  *
  * @package \Itkg\Log\Writer
  */
-class SoapWriter extends BaseWriter
+class SoapHandler extends AbstractProcessingHandler
 {
      /**
      * Le répertoire de log (inclut le séparateur en fin de chemin)
@@ -30,42 +31,45 @@ class SoapWriter extends BaseWriter
      * @var string
      */
     protected $file;
-    
+
     /**
-     * Récupération des paramêtres utiles au Writer
+     * Constructor
+     *
+     * @param string $folder Destination folder
+     * @param string $file Destination file
+     * @param int $level
      */
-    public function load()
+    public function __construct($folder, $file = '', $level = LogLevel::DEBUG)
     {
-        if(isset($this->parameters['folder'])) {
-            $this->folder = $this->parameters['folder'];
-        }
-        if(isset($this->parameters['file'])) {
-            $this->file = $this->parameters['file'];
-        } else {
+        $this->folder = $folder;
+        if($file) {
+            $this->file = $file;
+        }else {
             $this->file = time().".txt";
         }
+        parent::__construct($level);
     }
-    
- 
+
+
     /**
-     * setter pour $this->file
+     * File setter
+     *
      * @var $file string
      */
-    public function setFile($file) {
+    public function setFile($file)
+    {
         $this->file = $file;
     }
 
         
-     /**
+    /**
      * Ecrit le log dans un fichier
      *
-     * @param string $log
+     * @param array $record
      */
-    public function write($log)
+    public function write(array $record)
     {
-       $log = $this->formatter->format($log); 
-        
-       file_put_contents($this->folder.$this->file, $this->id.$log);
+       file_put_contents($this->folder.$this->file, $record['formatted']);
     }
 
 }

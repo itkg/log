@@ -18,8 +18,8 @@ use Itkg\Log\Formatter as BaseFormatter;
 class Formatter extends BaseFormatter
 {
    
-    public function format($log) 
+    public function format(array $record)
     {
-        return $log;
+        return $record['message'];
     }
 }

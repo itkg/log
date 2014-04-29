@@ -1,8 +1,8 @@
 <?php
 
-namespace Itkg\Log\Writer;
+namespace Itkg\Log\Handler;
 
-use Itkg\Log\Writer as BaseWriter;
+use Monolog\Handler\AbstractProcessingHandler;
 
 /**
  * Classe Writer par echo
@@ -15,19 +15,16 @@ use Itkg\Log\Writer as BaseWriter;
  *
  * @package \Itkg\Log\Writer
  */
-class EchoWriter extends BaseWriter
+class EchoHandler extends AbstractProcessingHandler
 {
     /**
      * Affiche le log à l'écran
      * 
-     * @param string $log
-     * @param array $params
+     * @param array $record
      */
-    public function write($log)
+    public function write(array $record)
     {
-        $log = $this->formatter->format($log);
-        
-        echo $this->id.$log.PHP_EOL;
+        echo $record['formatted'].PHP_EOL;
     }
-
 }
+
