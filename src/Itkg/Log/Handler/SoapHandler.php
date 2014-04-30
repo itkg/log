@@ -3,6 +3,7 @@
 namespace Itkg\Log\Writer;
 
 use Itkg\Log\Writer as BaseWriter;
+use Monolog\Handler\AbstractProcessingHandler;
 use Psr\Log\LogLevel;
 
 /**
