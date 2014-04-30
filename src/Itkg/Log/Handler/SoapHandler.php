@@ -1,8 +1,7 @@
 <?php
 
-namespace Itkg\Log\Writer;
+namespace Itkg\Log\Handler;
 
-use Itkg\Log\Writer as BaseWriter;
 use Monolog\Handler\AbstractProcessingHandler;
 use Psr\Log\LogLevel;
 
