@@ -31,49 +31,24 @@ class Factory
     public static function getLogger(array $handlers = array(), $channel = 'DEFAULT')
     {
         $logger = null;
-        if(is_array($handlers)) {
-            $logger = new Log::$config['LOGGER']($channel);
-            $logger->init();
-            if(!empty($handlers)) {
-                foreach($handlers as $h) {
-                    if(isset($h['handler'])) {
-                        $handler = $h['handler'];
-                        if(isset($h['formatter'])) {
-                            $formatter = self::getFormatter($h['formatter']);
-                        }else {
-                            $formatter = new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]();
-                        }
-                        $handler->setFormatter($formatter);
-                        $logger->pushHandler($handler);
-                    }
+        $logger = Builder::createLogger($channel);
+        if(!is_array($handlers) || empty($handlers)) {
+            $logger->pushHandler(Builder::createDefaultHandler());
+            return $logger;
+        }
+
+        foreach($handlers as $h) {
+            if(isset($h['handler'])) {
+                $handler = $h['handler'];
+                $formatter = '';
+                if(isset($h['formatter'])) {
+                    $formatter = $h['formatter'];
                 }
-            }else {
-                if(isset(Log::$config['DEFAULT_HANDLER']) && is_object(Log::$config['DEFAULT_HANDLER'])) {
-                    $handler = Log::$config['DEFAULT_HANDLER'];
-                    $handler->setFormatter(new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]());
-                    $logger->pushHandler($handler);
-                }
+                $handler->setFormatter(Builder::createFormatter($formatter));
+                $logger->pushHandler($handler);
             }
         }
 
         return $logger;
-    }
-
-    /**
-     * Renvoie un log formatter
-     * - Si $formatter est une clé, on ira chercher la classe associée dans la liste des formatters
-     * - Sinon on renvoie le formatter tel quel
-     *
-     * @param mixed $formatter
-     * @return mixed
-     */
-    protected static function getFormatter($formatter)
-    {
-
-        if (is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
-            return new Log::$config['FORMATTERS'][$formatter];
-        }
-
-        return $formatter;
     }
 }
