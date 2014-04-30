@@ -32,16 +32,16 @@ class Factory
     {
         $logger = null;
         $logger = Builder::createLogger($channel);
-        if(!is_array($handlers) || empty($handlers)) {
+        if (!is_array($handlers) || empty($handlers)) {
             $logger->pushHandler(Builder::createDefaultHandler());
             return $logger;
         }
 
-        foreach($handlers as $h) {
-            if(isset($h['handler'])) {
+        foreach ($handlers as $h) {
+            if (isset($h['handler'])) {
                 $handler = $h['handler'];
                 $formatter = '';
-                if(isset($h['formatter'])) {
+                if (isset($h['formatter'])) {
                     $formatter = $h['formatter'];
                 }
                 $handler->setFormatter(Builder::createFormatter($formatter));

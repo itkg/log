@@ -19,14 +19,14 @@ class Log
      * @var array
      */
     public static $config = array(
-        'LOG_PATH'          => '/var/logs',
-        'DEFAULT_WRITER'    => '', // A Log Handler instance
+        'LOG_PATH' => '/var/logs',
+        'DEFAULT_WRITER' => '', // A Log Handler instance
         'DEFAULT_FORMATTER' => 'string',
-        'TEMP_ROOT'         => '/tmp',
-        'FORMATTERS'        => array(
+        'TEMP_ROOT' => '/tmp',
+        'FORMATTERS' => array(
             'simple' => 'Itkg\Log\Formatter\SimpleFormatter',
             'string' => 'Itkg\Log\Formatter\StringFormatter',
-            'xml'    => 'Itkg\Log\Formatter\XMLFormatter'
+            'xml' => 'Itkg\Log\Formatter\XMLFormatter'
         ),
         'LOGGER' => 'Itkg\Log\Logger'
     );

@@ -25,9 +25,9 @@ class Logger extends BaseLogger
     public function init($identifier = '')
     {
         // Initializer log ID with optionnal identifier
-        $this->id = $this->generateId().' - '.$identifier;
+        $this->id = $this->generateId() . ' - ' . $identifier;
 
-        if($identifier) {
+        if ($identifier) {
             $this->id .= ' - ';
         }
     }
@@ -36,16 +36,17 @@ class Logger extends BaseLogger
      * Adds a log record.
      *
      * @param  integer $level   The logging level
-     * @param  string  $message The log message
-     * @param  array   $context The log context
+     * @param  string $message The log message
+     * @param  array $context The log context
      * @return Boolean Whether the record has been processed
      */
     public function addRecord($level, $message, array $context = array())
     {
         $context['id'] = $this->id; // Add ID in context
 
-        return parent::addRecord($level,$message, $context);
+        return parent::addRecord($level, $message, $context);
     }
+
     /**
      * Get ID
      *

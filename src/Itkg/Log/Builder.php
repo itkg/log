@@ -22,7 +22,7 @@ class Builder
      */
     public static function createDefaultHandler()
     {
-        if(!isset(Log::$config['DEFAULT_HANDLER']) || !is_object(Log::$config['DEFAULT_HANDLER'])) {
+        if (!isset(Log::$config['DEFAULT_HANDLER']) || !is_object(Log::$config['DEFAULT_HANDLER'])) {
             throw new \Exception('No default Handler defined, please set Itkg\Log::$config[\'DEFAULT_HANDLER\'] variable');
         }
 
@@ -41,7 +41,7 @@ class Builder
      */
     public static function createLogger($channel)
     {
-        if(!isset(Log::$config['LOGGER'])) {
+        if (!isset(Log::$config['LOGGER'])) {
             throw new \Exception('Please define a default logger');
         }
         $logger = new Log::$config['LOGGER']($channel);
@@ -59,17 +59,12 @@ class Builder
      */
     public static function createFormatter($formatter)
     {
-        if($formatter && is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
+        if ($formatter && is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
             return new Log::$config['FORMATTERS'][$formatter];
-        }
-
-        if(is_object($formatter)) {
+        }elseif (is_object($formatter)) {
             return $formatter;
         }
 
         return new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]();
-
     }
-
-
 }

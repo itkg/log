@@ -25,7 +25,7 @@ abstract class Formatter implements FormatterInterface
     public function formatBatch(array $records)
     {
         $message = '';
-        foreach($records as $record) {
+        foreach ($records as $record) {
             $message .= $this->format($record);
         }
 

@@ -22,11 +22,11 @@ class IdGenerator
      */
     public static function generate($start = 1000, $end = 1000000, $char = '#', $bdate = true)
     {
-        $id = $char.\rand($start, $end);
+        $id = $char . \rand($start, $end);
 
         // Si on souhaite la date en début de log
-        if($bdate) {
-            $id = date('m/d/y H:i:s') . " " .$id;
+        if ($bdate) {
+            $id = date('m/d/y H:i:s') . " " . $id;
         }
         return $id;
     }

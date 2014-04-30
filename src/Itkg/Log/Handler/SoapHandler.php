@@ -18,7 +18,7 @@ use Psr\Log\LogLevel;
  */
 class SoapHandler extends AbstractProcessingHandler
 {
-     /**
+    /**
      * Le répertoire de log (inclut le séparateur en fin de chemin)
      *
      * @var string
@@ -42,10 +42,10 @@ class SoapHandler extends AbstractProcessingHandler
     public function __construct($folder, $file = '', $level = LogLevel::DEBUG)
     {
         $this->folder = $folder;
-        if($file) {
+        if ($file) {
             $this->file = $file;
-        }else {
-            $this->file = time().".txt";
+        } else {
+            $this->file = time() . ".txt";
         }
         parent::__construct($level);
     }
@@ -69,7 +69,7 @@ class SoapHandler extends AbstractProcessingHandler
      */
     public function write(array $record)
     {
-       file_put_contents($this->folder.$this->file, $record['formatted']);
+        file_put_contents($this->folder . $this->file, $record['formatted']);
     }
 
 }

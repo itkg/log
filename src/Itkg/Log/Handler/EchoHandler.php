@@ -24,6 +24,6 @@ class EchoHandler extends AbstractProcessingHandler
      */
     public function write(array $record)
     {
-        echo $record['formatted'].PHP_EOL;
+        echo $record['formatted'] . PHP_EOL;
     }
 }
