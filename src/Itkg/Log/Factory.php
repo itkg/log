@@ -13,7 +13,7 @@ use Itkg\Log;
  *
  * @package \Itkg\Log
  */
-class Factory 
+class Factory
 {
 
     /**

@@ -8,8 +8,8 @@ use Psr\Log\LogLevel;
 /**
  * Classe Writer pour les requetes soap
  * Utile pour la reprise sur incident et l'enregistrement dans des fichiers
- * uniques par log 
- * 
+ * uniques par log
+ *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  * @author Benoit de JACOBET <benoit.dejacobet@businessdecision.com>
  * @author Clément GUINET <clement.guinet@businessdecision.com>
@@ -20,14 +20,14 @@ class SoapHandler extends AbstractProcessingHandler
 {
      /**
      * Le répertoire de log (inclut le séparateur en fin de chemin)
-     * 
+     *
      * @var string
      */
     protected $folder;
-    
+
     /**
      * Le fichier de log
-     * 
+     *
      * @var string
      */
     protected $file;
@@ -61,7 +61,7 @@ class SoapHandler extends AbstractProcessingHandler
         $this->file = $file;
     }
 
-        
+
     /**
      * Ecrit le log dans un fichier
      *

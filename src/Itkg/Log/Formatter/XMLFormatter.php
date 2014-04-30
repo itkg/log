@@ -7,7 +7,7 @@ use Itkg\Log\Formatter as BaseFormatter;
 /**
  * Classe de formatage XMLFormatter
  * Transforme une chaine en objet simpleXML
- * 
+ *
  * @author Pascal DENIS <pascal.denis@businessdecision.com>
  * @author Benoit de JACOBET <benoit.dejacobet@businessdecision.com>
  * @author Clément GUINET <clement.guinet@businessdecision.com>
