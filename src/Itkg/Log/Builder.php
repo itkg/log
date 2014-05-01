@@ -35,7 +35,7 @@ class Builder
     /**
      * Create a logger instance
      *
-     * @param $channel Logger channel
+     * @param string $channel Logger channel
      * @return \Itkg\Log\Logger
      * @throws \Exception
      */

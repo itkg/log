@@ -3,6 +3,7 @@
 namespace Itkg\Log;
 
 use Itkg\Log;
+use Monolog\Handler\AbstractHandler;
 
 /**
  * Classe factory pour les log\Writer
@@ -28,7 +29,7 @@ class Factory
      *
      * @return \Itkg\Log\Logger
      */
-    public static function getLogger(array $handlers = array(), $channel = 'DEFAULT')
+    static public function getLogger(array $handlers = array(), $channel = 'DEFAULT')
     {
         $logger = null;
         $logger = Builder::createLogger($channel);
@@ -37,18 +38,33 @@ class Factory
             return $logger;
         }
 
-        foreach ($handlers as $h) {
-            if (isset($h['handler'])) {
-                $handler = $h['handler'];
-                $formatter = '';
-                if (isset($h['formatter'])) {
-                    $formatter = $h['formatter'];
-                }
-                $handler->setFormatter(Builder::createFormatter($formatter));
-                $logger->pushHandler($handler);
-            }
+        foreach ($handlers as $config) {
+            $logger->pushHandler(self::createHandler($config));
         }
 
         return $logger;
+    }
+
+    /**
+     * Create handler from config
+     *
+     * @param array $config
+     * @throws \Exception
+     * @return AbstractHandler
+     */
+    static public function createHandler(array $config)
+    {
+        if(!isset($config['handler'])) {
+            throw new \Exception('No handler define');
+        }
+
+        $handler = $config['handler'];
+        $formatter = '';
+        if (isset($config['formatter'])) {
+            $formatter = $config['formatter'];
+        }
+        $handler->setFormatter(Builder::createFormatter($formatter));
+
+        return $handler;
     }
 }

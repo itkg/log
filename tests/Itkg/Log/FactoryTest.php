@@ -23,7 +23,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
+        \Itkg\Log::$config['DEFAULT_HANDLER'] = new EchoHandler();
     }
 
     /**
@@ -65,6 +65,20 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 	    $defaultWriterClass = \Itkg\Log::$config['LOGGER'];
 	    $this->assertEquals($defaultWriterClass, get_class($logger));
     }
+
+    /**
+     * Test default logger with no config defined
+     */
+    public function testGetDefaultLoggerWithNoLoggerDefined()
+    {
+        \Itkg\Log::$config['LOGGER'] = null;
+        try {
+            $logger = \Itkg\Log\Factory::getLogger(array());
+            $this->fail('An exception must be thrown because no default logger defined');
+        }catch(\Exception $e){}
+
+        \Itkg\Log::$config['LOGGER'] = 'Itkg\Log\NullLogger';
+    }
     
     /**
      * test logger setting handler
@@ -86,5 +100,71 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
 	    $this->assertEquals($testHandler, $handler);
 	    $this->assertEquals($testFormatter, $handler->getFormatter());
+
+        $testFormatter = 'string';
+        $logger = \Itkg\Log\Factory::getLogger(
+            array(
+                array(
+                    'handler' => $testHandler,
+                    'formatter' => $testFormatter
+                )
+            )
+        );
+        $handler = $logger->popHandler();
+
+        $this->assertEquals($testHandler, $handler);
+        $this->assertEquals(\Itkg\Log::$config['FORMATTERS']['string'], get_class($handler->getFormatter()));
+
+        $logger = \Itkg\Log\Factory::getLogger(
+            array(
+                array(
+                    'handler' => $testHandler
+                )
+            )
+        );
+        $handler = $logger->popHandler();
+
+        $this->assertEquals($testHandler, $handler);
+        $this->assertEquals(\Itkg\Log::$config['FORMATTERS']['string'], get_class($handler->getFormatter()));
+    }
+
+    /**
+     * test logger with unvalid config handler
+     */
+    public function testGetHandlerWithUnvalidConfig()
+    {
+        $testHandler = new StreamHandler('/tmp/temp.log');
+
+        $testFormatter = new Mock\Formatter();
+
+        try {
+            $logger = \Itkg\Log\Factory::getLogger(
+                array(
+                    array(
+                        'formatter' => $testFormatter
+                    )
+                )
+            );
+            $this->fail('An exception must be thrown');
+        } catch (\Exception $e) {
+
+        }
+    }
+
+    /**
+     * test default handler where no default handler is defined
+     */
+    public function testGetDefaultHandlerWithUnvalidConfig()
+    {
+        \Itkg\Log::$config['DEFAULT_HANDLER'] = '';
+        try {
+            $logger = \Itkg\Log\Factory::getLogger(
+                array(
+                )
+            );
+            $this->fail('An exception must be thrown because no valid handler is defined');
+        } catch (\Exception $e) {
+
+        }
     }
 }

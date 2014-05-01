@@ -48,4 +48,19 @@ class StringFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($text, utf8_decode($this->object->format(array('message' => $text))));
         
     }
+
+    /**
+     * test formatBatch
+     */
+    public function testFormatBatch()
+    {
+        $text = "it's a test";
+        $text2 = "it's another test";
+        $record = array('message' => $text);
+        $record2 = array('message' => $text2);
+
+        $this->assertEquals($text.$text2, $this->object->formatBatch(array($record, $record2)));
+
+
+    }
 }

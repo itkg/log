@@ -61,6 +61,25 @@ class SoapHandler extends AbstractProcessingHandler
         $this->file = $file;
     }
 
+    /**
+     * File getter
+     *
+     * @return string
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Folder getter
+     *
+     * @return string
+     */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
 
     /**
      * Ecrit le log dans un fichier
@@ -71,5 +90,4 @@ class SoapHandler extends AbstractProcessingHandler
     {
         file_put_contents($this->folder . $this->file, $record['formatted']);
     }
-
 }

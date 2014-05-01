@@ -24,6 +24,7 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
+        \Itkg\Log::$config['DEFAULT_HANDLER'] = new EchoHandler();
 		$this->object = \Itkg\Log\Factory::getLogger();
 	}
 
@@ -62,4 +63,23 @@ class LoggerTest extends \PHPUnit_Framework_TestCase
 		$this->object->init('IDENTIFIER');
 		$this->assertNotEquals('IDENTIFIER', $this->object->getId());
 	}
+
+    /**
+     * Test NullLogger
+     */
+    public function testNullLogger()
+    {
+        $config = array(array('handler' => new EchoHandler(LogLevel::CRITICAL)));
+        \Itkg\Log::$config['LOGGER'] = 'Itkg\Log\NullLogger';
+
+        $logger = \Itkg\Log\Factory::getLogger($config);
+
+        ob_start();
+        $logger->addInfo('A message');
+        ob_end_flush();
+        $content = ob_get_contents();
+
+        $this->assertEmpty($content);
+
+    }
 }
