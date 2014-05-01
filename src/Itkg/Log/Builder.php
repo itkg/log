@@ -44,6 +44,7 @@ class Builder
         if (!isset(Log::$config['LOGGER'])) {
             throw new \Exception('Please define a default logger');
         }
+
         $logger = new Log::$config['LOGGER']($channel);
         $logger->init();
 
@@ -57,11 +58,11 @@ class Builder
      * @param string $formatter
      * @return FormatterInterface
      */
-    public static function createFormatter($formatter)
+    public static function createFormatter($formatter = null)
     {
-        if ($formatter && is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
+        if (is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
             return new Log::$config['FORMATTERS'][$formatter];
-        }elseif (is_object($formatter)) {
+        } elseif (is_object($formatter)) {
             return $formatter;
         }
 
