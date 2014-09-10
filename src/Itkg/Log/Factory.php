@@ -29,7 +29,7 @@ class Factory
      *
      * @return \Itkg\Log\Logger
      */
-    static public function getLogger(array $handlers = array(), $channel = 'DEFAULT')
+    static public function getLogger($handlers = array(), $channel = 'DEFAULT')
     {
         $logger = null;
         $logger = Builder::createLogger($channel);
@@ -38,10 +38,14 @@ class Factory
             return $logger;
         }
 
-        foreach ($handlers as $config) {
-            $logger->pushHandler(self::createHandler($config));
-        }
+        if(sizeof($handlers) == 1) {
+            $logger->pushHandler(self::createHandler($handlers));
+        } else {
+            foreach ($handlers as $config) {
 
+                $logger->pushHandler(self::createHandler($config));
+            }
+        }
         return $logger;
     }
 
