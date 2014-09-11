@@ -38,14 +38,12 @@ class Factory
             return $logger;
         }
 
-        if(sizeof($handlers) == 1) {
-            $logger->pushHandler(self::createHandler($handlers));
-        } else {
-            foreach ($handlers as $config) {
 
-                $logger->pushHandler(self::createHandler($config));
-            }
+        foreach ($handlers as $config) {
+
+            $logger->pushHandler(self::createHandler($config));
         }
+
         return $logger;
     }
 
