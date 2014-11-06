@@ -65,7 +65,6 @@ class Builder
         } elseif (is_object($formatter)) {
             return $formatter;
         } elseif (is_object(Log::$config['FORMATTERS'][$formatter])) {
-            print_r(Log::$config['FORMATTERS'][$formatter]);
             return Log::$config['FORMATTERS'][$formatter];
         }
 
