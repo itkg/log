@@ -64,7 +64,7 @@ class Builder
             return new Log::$config['FORMATTERS'][$formatter];
         } elseif (is_object($formatter)) {
             return $formatter;
-        } elseif (is_object(Log::$config['FORMATTERS'][$formatter])) {
+        } elseif (isset(Log::$config['FORMATTERS'][$formatter]) && is_object(Log::$config['FORMATTERS'][$formatter])) {
             return Log::$config['FORMATTERS'][$formatter];
         }
 
