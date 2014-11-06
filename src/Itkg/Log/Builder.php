@@ -60,10 +60,16 @@ class Builder
      */
     public static function createFormatter($formatter = null)
     {
-        if (is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter])) {
+        if (is_scalar($formatter) && isset(Log::$config['FORMATTERS'][$formatter]) && !is_object(isset(Log::$config['FORMATTERS'][$formatter]))) {
             return new Log::$config['FORMATTERS'][$formatter];
         } elseif (is_object($formatter)) {
             return $formatter;
+        } elseif (is_object(Log::$config['FORMATTERS'][$formatter])) {
+            return Log::$config['FORMATTERS'][$formatter];
+        }
+
+        if (is_object(Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']])) {
+            return Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']];
         }
 
         return new Log::$config['FORMATTERS'][Log::$config['DEFAULT_FORMATTER']]();
